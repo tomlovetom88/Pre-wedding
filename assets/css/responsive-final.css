@@ -1,0 +1,90 @@
+/* Final responsive layer — loaded last to normalize every scene. */
+html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{width:100%;min-width:0;margin:0;overflow-x:hidden}
+main,.invitation{width:min(100%,480px);min-width:0;margin-inline:auto}
+.invitation>*{min-width:0;max-width:100%}
+.section{width:100%;padding-block:clamp(4rem,12vw,7rem);padding-inline:clamp(14px,5vw,28px);overflow:hidden}
+.section-heading{max-width:100%;margin-bottom:clamp(2rem,9vw,4rem)}
+.section-heading h2,.location h2,.final h2{overflow-wrap:anywhere;font-size:clamp(2.35rem,11vw,4.75rem);line-height:.95}
+p,h1,h2,h3,dd,strong,span{max-width:100%}
+img,video,iframe{max-width:100%}
+.button{max-width:100%;height:auto;min-height:48px;padding:11px clamp(18px,6vw,28px);white-space:normal;text-align:center;line-height:1.45}
+.story-card,.wedding-card,.info-card,.gift-modal__card{width:100%;min-width:0}
+.gift-card dl div,.gift-modal dl div{align-items:start;flex-wrap:wrap}.gift-card dd,.gift-modal dd{min-width:0;overflow-wrap:anywhere}
+input,textarea,select{min-width:0;max-width:100%}
+
+/* Opening cover and inner envelope */
+.envelope-scene{inset:0;width:100%;max-width:none;transform:none}
+.envelope-stage{width:100%;height:100vh;height:100dvh;min-height:460px;max-height:none}
+.folded-cover{inset:0;width:100%;height:auto;max-height:none}
+.mail-envelope{right:max(10px,calc((100% - 440px)/2));left:max(10px,calc((100% - 440px)/2));width:auto;max-width:440px;height:clamp(205px,42dvh,370px);margin:0}
+.mail-envelope .photo-card{right:clamp(12px,6vw,30px);left:clamp(12px,6vw,30px);width:auto;max-width:none}
+.envelope-prompt,.revealed-prompt{padding-inline:12px;overflow-wrap:anywhere}
+
+/* Hero */
+.hero.garden-scene{width:100%;min-height:100vh;min-height:100dvh;padding-inline:clamp(14px,5vw,24px)}
+.hero .hero__content{width:100%;min-width:0}
+.hero h1{max-width:100%;font-size:clamp(3.1rem,18vw,5.6rem)}
+.hero .hero__image{right:clamp(16px,8%,38px);left:clamp(16px,8%,38px);width:auto;max-width:none}
+
+/* Content layouts */
+.overview-card>div{grid-template-columns:minmax(58px,72px) minmax(0,1fr)}
+.couple-profiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+.gallery,.memory-strip{width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
+.gallery__item,.gallery__item img,.memory-strip img{min-width:0}
+.countdown{width:100%;grid-template-columns:repeat(4,minmax(0,1fr))}
+.countdown div{min-width:0}.countdown strong{font-size:clamp(1.25rem,8vw,2.5rem)}.countdown span{font-size:clamp(.4rem,1.8vw,.54rem);letter-spacing:.06em}
+.timeline article{grid-template-columns:minmax(44px,52px) 22px minmax(0,1fr)}
+.palette{max-width:100%;padding-inline:2px}.dress-note{max-width:100%}
+.contact__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lightbox img{max-width:calc(100vw - 42px);max-height:calc(100dvh - 90px)}
+.gift-modal{padding:clamp(10px,4vw,20px)}
+.gift-modal__card{max-height:calc(100dvh - 20px);padding:2.3rem clamp(15px,5vw,24px)}
+
+/* Extra-small phones: 320–359px */
+@media(max-width:359px){
+  .section{padding-inline:12px}
+  .eyebrow{font-size:.56rem;letter-spacing:.2em}
+  .hero.garden-scene{padding-top:34px}
+  .hero h1{font-size:clamp(2.75rem,17vw,3.7rem)}
+  .hero h1 span:first-child{transform:translateX(-5%)}
+  .hero h1 span:last-child{transform:translateX(6%)}
+  .hero .script-line{font-size:.95rem}
+  .hero .hero__image{right:12px;bottom:40px;left:12px;height:47dvh}
+  .couple-profiles{gap:7px}.couple-profiles img{max-width:none;height:auto}
+  .gallery{grid-auto-rows:145px}.memory-strip img{height:145px}.memory-strip img:first-child{height:205px}
+  .countdown div{padding:1rem 1px}.countdown strong{font-size:1.25rem}
+  .palette{gap:8px}.dress-code .palette span{width:42px;height:42px}.dress-code .palette i{font-size:.45rem}
+  .contact__grid{grid-template-columns:1fr}
+  .lightbox__prev{left:3px}.lightbox__next{right:3px}
+}
+
+/* Regular phones: 360–479px */
+@media(min-width:360px) and (max-width:479px){
+  .gallery{grid-auto-rows:clamp(160px,48vw,205px)}
+  .memory-strip img{height:clamp(165px,46vw,205px)}
+  .memory-strip img:first-child{height:clamp(230px,68vw,285px)}
+}
+
+/* Card preview on tablet and desktop */
+@media(min-width:480px){
+  body{background:radial-gradient(circle at 50% 35%,#58534d,#353432 72%)}
+  main,.invitation{width:480px}
+  .invitation{box-shadow:0 0 70px rgba(0,0,0,.42)}
+  .section{padding-inline:28px}
+  .gallery{grid-auto-rows:220px}
+}
+
+/* Short and landscape screens */
+@media(orientation:landscape) and (max-height:700px){
+  .envelope-stage{min-height:100dvh}
+  .mail-envelope{bottom:14px;height:min(54dvh,320px)}
+  .mail-envelope .photo-card{top:-28dvh;height:80dvh}
+  .hero.garden-scene{min-height:100dvh;padding:20px 50% 20px 20px}
+  .hero h1{font-size:clamp(2.8rem,9vw,4.5rem)}
+  .hero .hero__image{inset:18px 18px 18px auto;width:45%;height:auto}
+  .hero .script-line{font-size:1rem}
+}
+
+@supports(overflow:clip){html,body{overflow-x:clip}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0ms!important}}

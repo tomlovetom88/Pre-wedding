@@ -1,0 +1,103 @@
+/* สีปกพับตามตัวอย่าง: soft sage green */
+.envelope__back {
+  background: #b8c7ad;
+}
+
+.cover-panel {
+  background-color: #b8c7ad;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, .2), rgba(103, 77, 62, .035)),
+    url('../images/placeholders/botanical.svg');
+  background-blend-mode: soft-light;
+}
+
+/* Full-screen folded invitation cover */
+.envelope-stage {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+}
+
+.envelope-scene {
+  width: 100vw;
+  max-width: none;
+}
+
+.envelope {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  max-height: none;
+}
+
+.envelope__back,
+.cover-panel--left,
+.cover-panel--right {
+  border-radius: 0;
+}
+
+.envelope-prompt,
+.revealed-prompt {
+  z-index: 10;
+  bottom: 24px;
+  color: #674d3e;
+}
+
+/* ซองจดหมายด้านในและการ์ดรูปที่เลื่อนออกจากซอง */
+.mail-envelope{position:absolute;z-index:4;right:7%;bottom:9%;left:7%;height:46%;opacity:0;perspective:1400px;filter:drop-shadow(0 18px 22px rgba(82,61,43,.2));transform:translateY(18px) scale(.96);transition:opacity 500ms ease 850ms,transform 700ms ease 850ms}
+.mail-envelope__back{position:absolute;inset:0;z-index:1;border-radius:10px;background:#e8dece}
+.mail-envelope .photo-card{position:absolute;z-index:3;top:-54%;right:8%;bottom:auto;left:8%;width:84%;height:138%;padding:8px;border-radius:14px;background:#fffdf9;opacity:0;overflow:hidden;transform:translateY(52%) scale(.96);transition:transform 1050ms cubic-bezier(.22,.7,.2,1) 2250ms,opacity 550ms ease 2200ms}
+.mail-envelope .photo-card img{width:100%;height:100%;border-radius:9px;object-fit:cover}
+.mail-envelope__flap{position:absolute;inset:0 0 42%;z-index:5;border-radius:10px 10px 0 0;background:#f1e9dc;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;backface-visibility:hidden;transition:transform 850ms cubic-bezier(.4,.05,.2,1) 1400ms,z-index 0ms linear 2200ms}
+.mail-envelope__pocket{position:absolute;inset:0;z-index:4;border-radius:0 0 10px 10px;background:linear-gradient(155deg,#fff9f1,#dfd2bf);clip-path:polygon(0 34%,50% 67%,100% 34%,100% 100%,0 100%)}
+.mail-envelope__seal{position:absolute;z-index:6;top:47%;left:50%;display:grid;place-items:center;width:54px;aspect-ratio:1;border:3px double rgba(255,255,255,.35);border-radius:50%;background:#c9958c;color:#fff9f1;font:.72rem Georgia,serif;box-shadow:0 6px 12px rgba(82,61,43,.24);transform:translate(-50%,-50%);transition:opacity 350ms ease 1250ms,transform 350ms ease 1250ms}
+.envelope-scene.is-opening .mail-envelope,.envelope-scene.is-revealed .mail-envelope{opacity:1;transform:translateY(0) scale(1)}
+.envelope-scene.is-opening .mail-envelope__seal,.envelope-scene.is-revealed .mail-envelope__seal{opacity:0;transform:translate(-50%,-50%) scale(.75)}
+.envelope-scene.is-opening .mail-envelope__flap,.envelope-scene.is-revealed .mail-envelope__flap{z-index:2;transform:rotateX(178deg)}
+.envelope-scene.is-opening .mail-envelope .photo-card,.envelope-scene.is-revealed .mail-envelope .photo-card{opacity:1;transform:translateY(0) scale(1)}
+@media(max-height:620px){.mail-envelope{bottom:7%;height:43%}}
+
+/* Fluid layout: small phones, tablets, desktop, and landscape screens. */
+html,body{width:100%;min-width:0;overflow-x:clip}
+.envelope-stage,.folded-cover,.cover-panel,.mail-envelope,.photo-card{min-width:0}
+.mail-envelope{right:14px;bottom:clamp(48px,8dvh,84px);left:14px;width:auto;max-width:440px;height:clamp(220px,42dvh,370px);margin-inline:auto}
+.mail-envelope .photo-card{top:clamp(-230px,-28dvh,-145px);right:clamp(14px,6vw,32px);left:clamp(14px,6vw,32px);width:auto;height:clamp(310px,58dvh,520px)}
+
+@media(max-width:359px){
+  .mail-envelope{right:10px;left:10px;height:clamp(205px,40dvh,300px)}
+  .mail-envelope .photo-card{top:clamp(-190px,-26dvh,-125px);height:clamp(280px,55dvh,420px)}
+  .dried-flower{transform:translateX(-50%) scale(.82)}
+  .wax-seal{width:56px}
+  .envelope-prompt,.revealed-prompt{bottom:14px;font-size:.56rem}
+}
+
+@media(orientation:landscape) and (max-height:700px){
+  .mail-envelope{bottom:18px;max-width:420px;height:54dvh}
+  .mail-envelope .photo-card{top:-30dvh;height:82dvh}
+  .envelope-prompt,.revealed-prompt{right:12px;bottom:10px;left:auto;width:max-content}
+}
+
+@media(min-width:768px){
+  .mail-envelope{height:min(42dvh,370px)}
+  .envelope-prompt,.revealed-prompt{font-size:.66rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mail-envelope,.mail-envelope .photo-card,.mail-envelope__flap,.mail-envelope__seal{transition-duration:.01ms!important;transition-delay:0ms!important}
+}
+
+/* ซองสีเขียว Sage เข้มกว่าพื้นหลัง */
+.mail-envelope__back{background:#91a486}
+.mail-envelope__flap{background:#9caf91}
+.mail-envelope__pocket{background:linear-gradient(155deg,#a8b99e,#879b7d)}
+
+/* Keep the cover seal hidden after the opening animation finishes. */
+.envelope-scene.is-revealed .wax-seal,
+.envelope-scene.is-leaving .wax-seal {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(.7);
+}

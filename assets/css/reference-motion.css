@@ -1,0 +1,40 @@
+/* Motion language inspired by the supplied reference video. */
+.envelope-scene{
+  background:
+    radial-gradient(circle at 8% 20%,rgba(243,213,215,.95) 0 12px,transparent 13px),
+    radial-gradient(circle at 18% 29%,rgba(242,217,154,.9) 0 9px,transparent 10px),
+    radial-gradient(circle at 91% 16%,rgba(205,185,220,.85) 0 11px,transparent 12px),
+    radial-gradient(circle at 84% 31%,rgba(255,253,249,.95) 0 15px,transparent 16px),
+    radial-gradient(ellipse at 8% 103%,#91a486 0 13%,transparent 13.5%),
+    radial-gradient(ellipse at 93% 105%,#a9b99a 0 15%,transparent 15.5%),
+    linear-gradient(180deg,#ddecf4 0%,#fff9f1 53%,#f8eddf 100%);
+}
+.envelope-scene::before,.envelope-scene::after{content:"";position:absolute;z-index:0;bottom:-25px;width:150px;height:330px;opacity:.68;pointer-events:none;background:radial-gradient(circle at 50% 16%,#f3d5d7 0 12px,transparent 13px),radial-gradient(circle at 30% 35%,#f2d99a 0 9px,transparent 10px),radial-gradient(circle at 72% 48%,#cdb9dc 0 10px,transparent 11px),radial-gradient(ellipse at 34% 66%,#a9b99a 0 20px,transparent 21px),linear-gradient(77deg,transparent 49%,#879b7d 49.5% 50.5%,transparent 51%);transition:opacity 900ms ease,transform 1300ms cubic-bezier(.22,.7,.2,1)}
+.envelope-scene::before{left:-42px;transform:translateY(30px) rotate(-9deg)}.envelope-scene::after{right:-42px;transform:translateY(30px) scaleX(-1) rotate(-9deg)}
+.envelope-scene.is-opening::before,.envelope-scene.is-revealed::before{transform:translateY(0) rotate(-9deg)}.envelope-scene.is-opening::after,.envelope-scene.is-revealed::after{transform:translateY(0) scaleX(-1) rotate(-9deg)}
+
+.mail-envelope{filter:drop-shadow(0 22px 28px rgba(82,61,43,.22));transform:translateY(42px) scale(.88);transition:opacity 550ms ease 760ms,transform 900ms cubic-bezier(.22,.7,.2,1) 760ms}
+.mail-envelope__back{background:linear-gradient(145deg,#9fb094,#84977c)}
+.mail-envelope__flap{background:linear-gradient(165deg,#afbea6,#91a486);transition:transform 900ms cubic-bezier(.4,.05,.2,1) 1450ms,z-index 0ms linear 2280ms,filter 600ms ease 1450ms}
+.mail-envelope__pocket{background:linear-gradient(155deg,#aebda4,#879b7d);box-shadow:inset 0 1px rgba(255,255,255,.32)}
+.photo-reveal-window{position:absolute;z-index:3;top:clamp(-230px,-28dvh,-145px);right:0;bottom:0;left:0;overflow:hidden;pointer-events:none}
+.photo-reveal-window .photo-card{top:0!important;right:clamp(12px,6vw,30px)!important;bottom:auto!important;left:clamp(12px,6vw,30px)!important;width:auto!important;height:100%!important}
+.mail-envelope .photo-card{box-shadow:0 12px 32px rgba(82,61,43,.2);transform:translateY(58%) scale(.94);transition:transform 1100ms cubic-bezier(.22,.7,.2,1) 2260ms,opacity 500ms ease 2180ms}
+.envelope-scene.is-opening .mail-envelope,.envelope-scene.is-revealed .mail-envelope{transform:translateY(0) scale(1)}
+.envelope-scene.is-opening .mail-envelope__flap,.envelope-scene.is-revealed .mail-envelope__flap{transform:rotateX(178deg);filter:brightness(.96)}
+.envelope-scene.is-opening .mail-envelope .photo-card,.envelope-scene.is-revealed .mail-envelope .photo-card{transform:translateY(0) scale(1)}
+.envelope-scene.is-opening .cover-panel--left{transform:rotateY(-108deg) translateX(-2%)}.envelope-scene.is-opening .cover-panel--right{transform:rotateY(108deg) translateX(2%)}
+
+.invitation{transform:translateY(24px) scale(.99);transition:opacity 760ms ease,transform 800ms cubic-bezier(.22,.7,.2,1)}
+.invitation.is-visible{transform:translateY(0) scale(1)}
+.envelope-scene.is-leaving .mail-envelope{opacity:0;transform:translateY(-18px) scale(.98);transition-delay:0ms;transition-duration:650ms}
+.envelope-scene.is-leaving::before,.envelope-scene.is-leaving::after{opacity:0;transform:translateY(18px)}
+
+.envelope-prompt,.revealed-prompt{transition:opacity 450ms ease,transform 600ms cubic-bezier(.22,.7,.2,1)}
+.envelope-scene.is-opening .envelope-prompt{transform:translateY(8px)}
+.envelope-scene.is-revealed .revealed-prompt{animation:prompt-arrive 700ms ease both}
+@keyframes prompt-arrive{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:359px){.envelope-scene::before,.envelope-scene::after{width:110px;height:250px}.mail-envelope{transform:translateY(30px) scale(.9)}.photo-reveal-window{top:clamp(-190px,-26dvh,-125px)}}
+@media(orientation:landscape) and (max-height:700px){.envelope-scene::before,.envelope-scene::after{height:180px}.mail-envelope{max-width:390px}.photo-reveal-window{top:-30dvh}}
+@media(prefers-reduced-motion:reduce){.envelope-scene::before,.envelope-scene::after,.mail-envelope,.mail-envelope__flap,.mail-envelope .photo-card,.invitation,.revealed-prompt{animation:none!important;transition-duration:.01ms!important;transition-delay:0ms!important}}

@@ -1,0 +1,122 @@
+/* White invitation theme — color is reserved for accents and decoration. */
+:root{--page-white:#ffffff;--paper-white:#fffdf9;--soft-line:rgba(103,77,62,.16)}
+.invitation{background:var(--page-white)}
+.invitation::before{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,253,249,.94));animation:none}
+.section,.garden-section,.gallery-section,.save-date,.wedding-details,.location,.dress-code,.gift,.rsvp,.wedding-gallery,.story-video,.wishes,.special-message,.contact,.wedding-overview{background-color:var(--page-white);background-image:none}
+.section:nth-child(even){background-color:var(--paper-white)}
+.section+section{border-top:1px solid rgba(103,77,62,.08)}
+.garden-section::before,.garden-section::after{opacity:.28}
+.section:not(.modern-couple):not(.final)::after{opacity:.38}
+.story-card,.wedding-card,.info-card,.gift-card,.rsvp form,.location__inner{background:rgba(255,255,255,.96);border-color:var(--soft-line);box-shadow:0 12px 34px rgba(82,61,43,.09)}
+.hero.garden-scene{padding-top:max(14px,env(safe-area-inset-top));background:linear-gradient(180deg,#f8fbfb 0%,#ffffff 50%,#fffdf9 100%)}
+.hero .cloud{background:rgba(221,237,244,.42)}
+.hero .hero__content{transform:translateY(-4px)}
+.hero .hero__image{right:0;left:0;width:100%;max-width:none;height:min(61dvh,570px);border-right:0;border-left:0;border-radius:0;object-position:center 32%;box-shadow:0 18px 42px rgba(82,61,43,.2)}
+.wedding-details{color:#674d3e}
+.timeline{background:#fff}
+.dress-code{background-color:#fff;background-image:linear-gradient(rgba(255,255,255,.93),rgba(255,255,255,.93)),url('../images/placeholders/botanical.svg')}
+.story-video{background:#fff}.video-placeholder{border-color:#fff;box-shadow:0 14px 30px rgba(82,61,43,.12)}
+.gift-modal__card{background:#fff}
+.countdown{background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(82,61,43,.07);overflow:hidden}
+.palette span{border:4px solid #fff;outline:1px solid rgba(103,77,62,.1)}
+.contact__grid a{background:#fff;border-color:var(--soft-line)}
+.story-card .story-portrait{position:relative;top:80px}
+.story-card .couple-profiles{margin-top:72px}
+
+/* NT monogram medallion */
+.story-card .story-portrait{
+  width:clamp(158px,42vw,190px);
+  height:clamp(158px,42vw,190px);
+  padding:8px;
+  border:1px solid rgba(190,151,84,.62);
+  outline:1px solid rgba(190,151,84,.22);
+  outline-offset:5px;
+  background:linear-gradient(145deg,#fff 45%,#fbf6ec);
+  box-shadow:0 14px 32px rgba(82,61,43,.15),inset 0 0 0 4px #fff;
+  isolation:isolate;
+}
+.story-card .story-portrait::before,
+.story-card .story-portrait::after{
+  content:"✦";
+  position:absolute;
+  z-index:2;
+  top:50%;
+  color:#c7a76b;
+  font-size:.75rem;
+  transform:translateY(-50%);
+}
+.story-card .story-portrait::before{left:-18px}
+.story-card .story-portrait::after{right:-18px}
+.story-card .story-portrait img{
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+  filter:contrast(1.04);
+  transition:transform .6s ease;
+}
+.story-card .story-portrait:hover img{transform:scale(1.035)}
+.couple-profiles{position:relative}
+.couple-ampersand{position:absolute;z-index:4;bottom:31px;left:50%;display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(201,149,140,.4);border-radius:50%;background:#fffdf9;color:#c9958c;font:italic 2rem/1 "Cormorant Garamond",Georgia,serif;box-shadow:0 5px 14px rgba(82,61,43,.1);transform:translateX(-50%) rotate(-7deg)}
+.couple-ampersand::before,.couple-ampersand::after{content:"";position:absolute;top:50%;width:18px;height:1px;background:linear-gradient(90deg,transparent,#c9958c)}
+.couple-ampersand::before{right:100%}.couple-ampersand::after{left:100%;transform:scaleX(-1)}
+@media(max-width:340px){.couple-ampersand{top:50%;bottom:auto;transform:translate(-50%,-50%) rotate(-7deg)}}
+.couple-profiles h3{font-size:clamp(1.05rem,4.6vw,1.35rem);line-height:1.25;letter-spacing:0;overflow-wrap:normal;word-break:keep-all}
+.wedding-overview{padding:0;background:#fff}.invitation-pages{display:grid;width:100%;gap:0}.invitation-pages img{display:block;width:100%;height:auto;border:0;border-radius:0;object-fit:contain}
+.location h2{width:100%;font-size:clamp(2.45rem,11.5vw,3.65rem);letter-spacing:.025em;line-height:1;white-space:nowrap;overflow-wrap:normal}
+@media(min-width:480px){.invitation{box-shadow:0 0 65px rgba(0,0,0,.34)}}
+@media(max-height:700px){.hero.garden-scene{padding-top:max(8px,env(safe-area-inset-top))}.hero .hero__content{transform:translateY(-2px)}.hero .hero__image{bottom:38px;height:52dvh}}
+@media(orientation:landscape) and (max-height:700px){.hero .hero__image{inset:14px 14px 14px auto;width:48%;height:auto;border-radius:8px}}
+@media(prefers-contrast:more){.story-card,.wedding-card,.info-card,.gift-card,.rsvp form{border-color:rgba(103,77,62,.45)}}
+
+/* Animated garden-path schedule */
+.wedding-details .timeline{position:relative;display:flex;flex-direction:column;gap:1.6rem;width:min(100%,420px);margin:auto;padding:2rem clamp(18px,6vw,34px);border:1px solid rgba(113,133,106,.18);border-radius:28px;background:linear-gradient(180deg,#fff 0%,#fbfdf8 100%);box-shadow:0 18px 45px rgba(82,61,43,.1);overflow:hidden}
+.wedding-details .timeline::before{content:"";position:absolute;z-index:0;top:7%;bottom:7%;left:50%;width:42%;border:2px dashed rgba(113,133,106,.42);border-block:0;border-radius:50%;transform:translateX(-50%)}
+.wedding-details .timeline::after{content:"✦";position:absolute;z-index:1;top:8%;left:50%;color:#d5b56f;font-size:1rem;filter:drop-shadow(0 2px 3px rgba(82,61,43,.2));animation:schedule-travel 6s ease-in-out infinite}
+.wedding-details .timeline article{position:relative;z-index:2;display:grid;grid-template-columns:72px minmax(0,1fr);grid-template-areas:"icon time" "icon copy";align-items:center;width:82%;min-height:112px;padding:.8rem 1rem;border:1px solid rgba(113,133,106,.18);border-radius:22px;background:rgba(255,255,255,.92);box-shadow:0 10px 24px rgba(82,61,43,.09);text-align:left}
+.wedding-details .timeline article:nth-child(odd){align-self:flex-start}.wedding-details .timeline article:nth-child(even){align-self:flex-end}
+.wedding-details .timeline article::after{display:none}
+.wedding-details .timeline time{grid-area:time;color:#a77b62;font:600 .76rem Montserrat,Arial,sans-serif;letter-spacing:.08em}
+.wedding-details .timeline .line-icon{grid-area:icon;display:grid;place-items:center;width:58px;height:58px;border:1px solid rgba(113,133,106,.25);border-radius:50%;background:#eef3e9;font-size:1.75rem;box-shadow:0 7px 18px rgba(82,61,43,.12);animation:schedule-float 2.8s ease-in-out infinite}
+.wedding-details .timeline article:nth-child(2) .line-icon{background:#f8e8e8;animation-delay:-.9s}.wedding-details .timeline article:nth-child(3) .line-icon{background:#f7edcf;animation-delay:-1.8s}
+.wedding-details .timeline article>div{grid-area:copy}.wedding-details .timeline h3{margin:.18rem 0 .1rem;color:#674d3e;font-size:clamp(1.08rem,5vw,1.4rem);letter-spacing:0}.wedding-details .timeline p{color:#8b7467;font-size:.78rem}
+@keyframes schedule-float{50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes schedule-travel{0%,100%{top:8%;transform:translateX(-50%) scale(.8)}50%{top:88%;transform:translateX(-50%) scale(1.2)}}
+@media(max-width:359px){.wedding-details .timeline{padding-inline:12px}.wedding-details .timeline article{width:88%;grid-template-columns:60px minmax(0,1fr);padding-inline:.7rem}.wedding-details .timeline .line-icon{width:50px;height:50px;font-size:1.45rem}}
+@media(prefers-reduced-motion:reduce){.wedding-details .timeline::after,.wedding-details .timeline .line-icon{animation:none}}
+
+/* Pastel botanical details for the schedule */
+.wedding-details{background:radial-gradient(circle at 8% 18%,rgba(243,213,215,.4),transparent 23%),radial-gradient(circle at 92% 42%,rgba(221,236,244,.55),transparent 26%),radial-gradient(circle at 12% 82%,rgba(242,225,182,.38),transparent 25%),#fffdf9}
+.wedding-details .timeline{border-color:rgba(113,133,106,.28);background:radial-gradient(circle at 8% 8%,rgba(243,213,215,.32),transparent 24%),radial-gradient(circle at 92% 30%,rgba(221,236,244,.4),transparent 26%),radial-gradient(circle at 18% 92%,rgba(242,225,182,.32),transparent 24%),linear-gradient(155deg,rgba(255,255,255,.98),rgba(246,250,242,.96));box-shadow:0 22px 55px rgba(82,61,43,.12),inset 0 0 0 7px rgba(255,255,255,.55)}
+.wedding-details .timeline::before{width:46%;border-color:rgba(113,133,106,.55);filter:drop-shadow(0 1px rgba(255,255,255,.9))}
+.wedding-details .timeline article{overflow:hidden;border-color:rgba(201,149,140,.22);box-shadow:0 12px 28px rgba(82,61,43,.11),inset 4px 0 0 var(--event-accent,#aebfa5)}
+.wedding-details .timeline article:nth-child(1){--event-accent:#9eb696;background:linear-gradient(105deg,rgba(232,241,226,.96),rgba(255,255,255,.96) 44%)}
+.wedding-details .timeline article:nth-child(2){--event-accent:#dfaeb4;background:linear-gradient(255deg,rgba(249,225,228,.96),rgba(255,255,255,.96) 48%)}
+.wedding-details .timeline article:nth-child(3){--event-accent:#ddb96c;background:linear-gradient(105deg,rgba(250,238,203,.96),rgba(255,255,255,.96) 46%)}
+.wedding-details .timeline article::before{content:"❦";position:absolute;right:10px;bottom:-8px;color:var(--event-accent);font:2rem/1 Georgia,serif;opacity:.2;transform:rotate(-18deg);animation:schedule-leaf 3.5s ease-in-out infinite}
+.wedding-details .timeline article:nth-child(2)::before{right:auto;left:10px;transform:rotate(18deg)}
+.wedding-details .timeline .line-icon{border:2px solid rgba(255,255,255,.9);box-shadow:0 8px 18px rgba(82,61,43,.14),0 0 0 3px color-mix(in srgb,var(--event-accent,#aebfa5) 30%,transparent)}
+.wedding-details .timeline time{color:var(--event-accent,#a77b62);text-shadow:0 1px #fff}
+@keyframes schedule-leaf{50%{opacity:.4;translate:0 -4px}}
+@media(prefers-reduced-motion:reduce){.wedding-details .timeline article::before{animation:none}}
+
+/* Ceremony route layout */
+.wedding-details .timeline{display:flex;min-height:650px;padding:2.5rem clamp(28px,10vw,54px);gap:2.5rem;background:linear-gradient(rgba(255,255,255,.9),rgba(251,253,248,.88)),radial-gradient(circle at 50% 20%,#f3d5d7,transparent 28%),radial-gradient(circle at 50% 78%,#d9e5d2,transparent 32%)}
+.wedding-details .timeline::before,.wedding-details .timeline::after{display:none}
+.wedding-details .timeline-route{position:absolute;z-index:0;inset:42px 30px 36px;width:calc(100% - 60px);height:calc(100% - 78px);overflow:visible}
+.wedding-details .timeline-route path{fill:none;stroke:#7d8e75;stroke-width:2;stroke-linecap:round;stroke-dasharray:3 8;opacity:.72}
+.wedding-details .timeline-route circle{fill:#6f8068;filter:drop-shadow(0 2px 3px rgba(82,61,43,.3))}
+.wedding-details .timeline article{display:flex;flex-direction:column;width:48%;min-height:150px;padding:0;border:0;border-radius:0;background:transparent!important;box-shadow:none;overflow:visible;text-align:center}
+.wedding-details .timeline article:nth-of-type(1),.wedding-details .timeline article:nth-of-type(3){align-self:flex-start}
+.wedding-details .timeline article:nth-of-type(2){align-self:flex-end}
+.wedding-details .timeline article::before,.wedding-details .timeline article::after{display:none}
+.wedding-details .timeline .line-icon{order:-2;width:76px;height:76px;margin:0 auto .55rem;border:5px solid #fff;border-radius:50% 50% 46% 54%;font-size:2.15rem;box-shadow:0 8px 20px rgba(82,61,43,.16),0 0 0 1px rgba(113,133,106,.24)}
+.wedding-details .timeline time{order:-1;margin-bottom:.12rem;font-size:.7rem}.wedding-details .timeline h3{font-size:1.12rem}.wedding-details .timeline p{font-size:.7rem;line-height:1.45}
+.timeline-garden{position:absolute;z-index:0;top:20px;bottom:20px;width:28px;color:#9dad92;font:1.15rem/5.8rem Georgia,serif;opacity:.5;writing-mode:horizontal-tb;animation:garden-sway 4s ease-in-out infinite}
+.timeline-garden--left{left:5px}.timeline-garden--right{right:5px;transform:scaleX(-1);animation-delay:-2s}
+@keyframes garden-sway{50%{translate:0 -5px;opacity:.72}}
+@media(max-width:359px){.wedding-details .timeline{min-height:600px;padding-inline:25px;gap:2rem}.wedding-details .timeline article{width:52%}.wedding-details .timeline .line-icon{width:64px;height:64px;font-size:1.8rem}.wedding-details .timeline-route{inset-inline:18px;width:calc(100% - 36px)}}
+@media(prefers-reduced-motion:reduce){.timeline-garden{animation:none}.wedding-details .timeline-route circle{display:none}}

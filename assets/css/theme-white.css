@@ -80,6 +80,16 @@
 @media(orientation:landscape) and (max-height:700px){.hero .hero__image{inset:14px 14px 14px auto;width:48%;height:auto;border-radius:8px}}
 @media(prefers-contrast:more){.story-card,.wedding-card,.info-card,.gift-card,.rsvp form{border-color:rgba(103,77,62,.45)}}
 
+/* Editorial mosaic layout for the pre-wedding gallery */
+.gallery-section .gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:dense;grid-auto-rows:145px;gap:8px;padding:8px;border-radius:0;background:#fff;box-shadow:0 14px 36px rgba(82,61,43,.1)}
+.gallery-section .gallery .gallery__item{grid-column:auto;grid-row:auto;border-radius:0}
+.gallery-section .gallery .gallery__item:nth-child(1){grid-column:1/-1;grid-row:span 2;border-radius:0}
+.gallery-section .gallery .gallery__item:nth-child(4),.gallery-section .gallery .gallery__item:nth-child(8),.gallery-section .gallery .gallery__item:nth-child(14),.gallery-section .gallery .gallery__item:nth-child(20){grid-column:1/-1;grid-row:span 2}
+.gallery-section .gallery .gallery__item:nth-child(5),.gallery-section .gallery .gallery__item:nth-child(11),.gallery-section .gallery .gallery__item:nth-child(17){grid-row:span 2}
+.gallery-section .gallery .gallery__item:nth-child(3),.gallery-section .gallery .gallery__item:nth-child(10),.gallery-section .gallery .gallery__item:nth-child(16){border-radius:0}
+.gallery-section .gallery .gallery__item:nth-child(4) img,.gallery-section .gallery .gallery__item:nth-child(8) img,.gallery-section .gallery .gallery__item:nth-child(14) img,.gallery-section .gallery .gallery__item:nth-child(20) img{object-position:center 38%}
+@media(min-width:700px){.gallery-section .gallery{grid-auto-rows:180px}}
+
 /* Animated garden-path schedule */
 .wedding-details .timeline{position:relative;display:flex;flex-direction:column;gap:1.6rem;width:min(100%,420px);margin:auto;padding:2rem clamp(18px,6vw,34px);border:1px solid rgba(113,133,106,.18);border-radius:28px;background:linear-gradient(180deg,#fff 0%,#fbfdf8 100%);box-shadow:0 18px 45px rgba(82,61,43,.1);overflow:hidden}
 .wedding-details .timeline::before{content:"";position:absolute;z-index:0;top:7%;bottom:7%;left:50%;width:42%;border:2px dashed rgba(113,133,106,.42);border-block:0;border-radius:50%;transform:translateX(-50%)}

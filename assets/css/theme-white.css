@@ -66,7 +66,15 @@
 @media(max-width:340px){.couple-ampersand{top:50%;bottom:auto;transform:translate(-50%,-50%) rotate(-7deg)}}
 .couple-profiles h3{font-size:clamp(1.05rem,4.6vw,1.35rem);line-height:1.25;letter-spacing:0;overflow-wrap:normal;word-break:keep-all}
 .wedding-overview{padding:0;background:#fff}.invitation-pages{display:grid;width:100%;gap:0}.invitation-pages img{display:block;width:100%;height:auto;border:0;border-radius:0;object-fit:contain}
+.gallery .gallery__item:nth-child(3){border-radius:8px}
 .location h2{width:100%;font-size:clamp(2.45rem,11.5vw,3.65rem);letter-spacing:.025em;line-height:1;white-space:nowrap;overflow-wrap:normal}
+.location .location__inner{font-family:Arial,Tahoma,sans-serif}
+.location .location__inner h2{font-family:Arial,Tahoma,sans-serif;font-weight:400;letter-spacing:.04em}
+.location .location__inner h3{font-family:Arial,Tahoma,sans-serif;font-size:clamp(1.35rem,6vw,1.8rem);font-weight:500;line-height:1.45;letter-spacing:0}
+.location .location__inner p{font-family:Arial,Tahoma,sans-serif;font-style:normal;line-height:1.7;letter-spacing:0}
+.location .location__inner .eyebrow{font-size:.67rem;letter-spacing:.24em;text-transform:uppercase}
+.location-map{width:100%;margin:1.75rem auto 0;overflow:hidden;border:5px solid #fff;border-radius:18px;box-shadow:0 12px 28px rgba(82,61,43,.14);aspect-ratio:4/3;background:#eef2e9}
+.location-map iframe{display:block;width:100%;height:100%;border:0}
 @media(min-width:480px){.invitation{box-shadow:0 0 65px rgba(0,0,0,.34)}}
 @media(max-height:700px){.hero.garden-scene{padding-top:max(8px,env(safe-area-inset-top))}.hero .hero__content{transform:translateY(-2px)}.hero .hero__image{bottom:38px;height:52dvh}}
 @media(orientation:landscape) and (max-height:700px){.hero .hero__image{inset:14px 14px 14px auto;width:48%;height:auto;border-radius:8px}}

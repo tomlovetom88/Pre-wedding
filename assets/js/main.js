@@ -5,13 +5,12 @@ const weddingConfig = {
   venue: {
     name: 'บ้านเลขที่ 117 หมู่ 10',
     address: 'ต.ป่าซาง อ.เวียงเชียงรุ้ง จ.เชียงราย',
-    mapUrl: 'https://maps.app.goo.gl/gYKpoQ4yu23m8Mg47?g_st=afm'
+    mapUrl: 'https://maps.app.goo.gl/VLdhCkeoMF28qCw59'
   },
   gift: { bank: 'BANK NAME', accountName: 'NOW & TOM', accountNumber: '000-0-00000-0' },
-  googleFormUrl: '#',
   wishesUrl: '#',
   storyVideoUrl: '',
-  contact: { bridePhone: '', groomPhone: '' },
+  contact: { bridePhone: '0808617616', groomPhone: '0930347892' },
   musicFile: './assets/music/music.mp3'
 };
 const $ = (selector) => document.querySelector(selector);
@@ -31,8 +30,8 @@ function applyConfiguration() {
   document.querySelectorAll('[data-bank]').forEach((el) => { el.textContent = weddingConfig.gift.bank; });
   document.querySelectorAll('[data-account-name]').forEach((el) => { el.textContent = weddingConfig.gift.accountName; });
   document.querySelectorAll('[data-account-number]').forEach((el) => { el.textContent = weddingConfig.gift.accountNumber; });
-  $('#googleFormLink').href = weddingConfig.googleFormUrl;
-  $('#wishesLink').href = weddingConfig.wishesUrl;
+  const wishesLink = $('#wishesLink');
+  if (wishesLink) wishesLink.href = weddingConfig.wishesUrl;
   document.querySelectorAll('[data-bride-phone]').forEach((el) => { el.href = weddingConfig.contact.bridePhone ? `tel:${weddingConfig.contact.bridePhone}` : '#'; });
   document.querySelectorAll('[data-groom-phone]').forEach((el) => { el.href = weddingConfig.contact.groomPhone ? `tel:${weddingConfig.contact.groomPhone}` : '#'; });
   $('[data-bride-phone-text]').textContent = weddingConfig.contact.bridePhone || '………………';
@@ -132,21 +131,62 @@ lightbox.addEventListener('touchstart', (event) => { touchStartX = event.changed
 lightbox.addEventListener('touchend', (event) => { const delta = event.changedTouches[0].clientX - touchStartX; if (Math.abs(delta) > 45) showImage(currentImage + (delta < 0 ? 1 : -1)); }, { passive: true });
 document.addEventListener('keydown', (event) => { if (!lightbox.classList.contains('is-open')) return; if (event.key === 'Escape') closeLightbox(); if (event.key === 'ArrowLeft') showImage(currentImage - 1); if (event.key === 'ArrowRight') showImage(currentImage + 1); });
 
-$('#copyAccount').addEventListener('click', async () => {
-  const status = $('#copyStatus');
-  try { await navigator.clipboard.writeText($('#accountNumber').textContent); status.textContent = 'Copied to clipboard'; }
-  catch (_) { status.textContent = 'Please select and copy the number above'; }
-});
-const giftModal = $('#giftModal');
-const openGiftButton = $('#openGift');
-const closeGiftButton = $('.gift-modal__close');
-function openGiftModal() { giftModal.classList.add('is-open'); giftModal.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; closeGiftButton.focus(); }
-function closeGiftModal() { giftModal.classList.remove('is-open'); giftModal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; openGiftButton.focus(); }
-openGiftButton.addEventListener('click', openGiftModal);
-closeGiftButton.addEventListener('click', closeGiftModal);
-giftModal.addEventListener('click', (event) => { if (event.target === giftModal) closeGiftModal(); });
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && giftModal.classList.contains('is-open')) closeGiftModal(); });
-function submitRSVP(event) { event.preventDefault(); $('#formStatus').textContent = 'ขอบคุณสำหรับการตอบรับ แล้วพบกันในวันสำคัญของเรานะคะ/ครับ'; event.currentTarget.reset(); }
-$('#rsvpForm').addEventListener('submit', submitRSVP);
+const storyVideoPlayer = $('#storyVideoPlayer');
+const videoPlayPause = $('#videoPlayPause');
+const videoMute = $('#videoMute');
+const videoFullscreen = $('#videoFullscreen');
+const videoMenu = $('#videoMenu');
+const videoSeek = $('#videoSeek');
+const videoCurrentTime = $('#videoCurrentTime');
+const videoDuration = $('#videoDuration');
+
+if (storyVideoPlayer && videoPlayPause) {
+  const formatVideoTime = (seconds) => {
+    if (!Number.isFinite(seconds)) return '0:00';
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+  };
+  const syncVideoControls = () => {
+    const isPlaying = !storyVideoPlayer.paused && !storyVideoPlayer.ended;
+    videoPlayPause.textContent = isPlaying ? '❚❚' : '▶';
+    videoPlayPause.setAttribute('aria-label', isPlaying ? 'หยุดวิดีโอชั่วคราว' : 'เล่นวิดีโอ');
+    videoMute.textContent = storyVideoPlayer.muted || storyVideoPlayer.volume === 0 ? '🔇' : '🔊';
+    videoCurrentTime.textContent = formatVideoTime(storyVideoPlayer.currentTime);
+    videoDuration.textContent = formatVideoTime(storyVideoPlayer.duration);
+    videoSeek.value = storyVideoPlayer.duration ? (storyVideoPlayer.currentTime / storyVideoPlayer.duration) * 100 : 0;
+  };
+  videoPlayPause.addEventListener('click', async () => {
+    if (storyVideoPlayer.paused) {
+      weddingMusic.pause();
+      musicButton.classList.remove('is-playing');
+      try { await storyVideoPlayer.play(); } catch (_) { /* Browser may block playback. */ }
+    } else storyVideoPlayer.pause();
+  });
+  videoMute.addEventListener('click', () => { storyVideoPlayer.muted = !storyVideoPlayer.muted; syncVideoControls(); });
+  videoSeek.addEventListener('input', () => {
+    if (storyVideoPlayer.duration) storyVideoPlayer.currentTime = (Number(videoSeek.value) / 100) * storyVideoPlayer.duration;
+  });
+  videoFullscreen.addEventListener('click', async () => {
+    const target = $('#videoPlaceholder');
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else if (target.requestFullscreen) await target.requestFullscreen();
+    else if (storyVideoPlayer.webkitEnterFullscreen) storyVideoPlayer.webkitEnterFullscreen();
+  });
+  const playbackRates = [1, 1.25, 1.5, 2, 0.75];
+  videoMenu.addEventListener('click', () => {
+    const currentIndex = playbackRates.indexOf(storyVideoPlayer.playbackRate);
+    storyVideoPlayer.playbackRate = playbackRates[(currentIndex + 1) % playbackRates.length];
+    videoMenu.title = `ความเร็ว ${storyVideoPlayer.playbackRate}x`;
+    videoMenu.setAttribute('aria-label', `ความเร็ววิดีโอ ${storyVideoPlayer.playbackRate} เท่า`);
+  });
+  storyVideoPlayer.addEventListener('play', syncVideoControls);
+  storyVideoPlayer.addEventListener('pause', syncVideoControls);
+  storyVideoPlayer.addEventListener('ended', syncVideoControls);
+  storyVideoPlayer.addEventListener('volumechange', syncVideoControls);
+  storyVideoPlayer.addEventListener('timeupdate', syncVideoControls);
+  storyVideoPlayer.addEventListener('loadedmetadata', syncVideoControls);
+  storyVideoPlayer.addEventListener('click', () => videoPlayPause.click());
+  syncVideoControls();
+}
 
 applyConfiguration(); updateCountdown(); window.setInterval(updateCountdown, 1000);
